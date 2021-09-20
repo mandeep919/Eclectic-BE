@@ -1,7 +1,7 @@
 {
-    "name": "EclecticBackend",
+    "name": "Eclectic Arts",
     "version": "1.0.0",
-    "description": "Eclectic backend is a node api application for eclectic webapp",
+    "description": "Eclectic backend is a node api application for Eclectic Arts webapp",
     "main": "app.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",

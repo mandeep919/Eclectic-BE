@@ -24,25 +24,6 @@ const config = Object.assign({
     logging: {
         appender: { type: "console" }
     },
-    /*
-    smtp: {
-      service: process.env.SMTP_SERVICE,
-      host: process.env.SMTP_HOST,
-      port: process.env.SMTP_PORT,
-      // secure: process.env.SMTP_IS_SECURE, // use SSL
-      auth: {
-        user: process.env.SMTP_USERNAME,
-        pass: process.env.SMTP_PASSWORD
-      },
-      from_name: process.env.SMTP_FROM_NAME,
-      from_address: process.env.SMTP_FROM_ADDRESS
-    },
-    api: {
-      host: process.env.PHP_HOST,
-      user: process.env.PHP_USER,
-      pass: process.env.PHP_PASS
-    }
-    */
     encryptString: process.env.ENCRYPT_STRING,
     crypt: {
         algorithm: "aes-256-ctr"
