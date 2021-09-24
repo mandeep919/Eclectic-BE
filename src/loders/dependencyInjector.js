@@ -8,7 +8,6 @@ const organizerR = require("../repos/organizerR");
 const testR = require("../repos/testR");
 const authM = require("../middleware/authentication");
 const roleM = require("../middleware/role");
-const domainIdentifier = require("../middleware/domainIdentifier");
 
 const container = awilix.createContainer({
     injectionMode: awilix.InjectionMode.PROXY
@@ -23,8 +22,7 @@ function setup() {
         testR: asClass(testR),
         organizerR: asClass(organizerR),
         authM: asClass(authM),
-        roleM: asClass(roleM),
-        domainIdentifier: asClass(domainIdentifier)
+        roleM: asClass(roleM)
     });
 }
 

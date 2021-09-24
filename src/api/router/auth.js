@@ -5,31 +5,35 @@ const auth = (app) => {
     const route = Router();
     app.use("/v1", route);
 
-    route.get("/authorize", async (req, res) => {
+    route.post("/signup", async (req, res) => {
         const authS = container.resolve("authS");
-        const token = req.headers.token;
-        if (token) {
-            const response = await authS.authorizeWithSSO(token);
-            return res.status(200).json({ data: response });
+        const data = req.body;
+
+        const response = await authS.signup(data);
+        if (response) {
+            return res.status(200).json({ msg: "SignedUp" });
+        }
+    });
+
+    route.post("/login", async (req, res) => {
+        const authS = container.resolve("authS");
+        const data = req.body;
+        const response = await authS.login(data);
+        if (response) {
+            return res.status(200).json({ success: true, data: response });
         }
         return res.status(401).send({ message: "Token Not Provided" });
     });
 
-    route.get(
-        "/api-key",
-        container.resolve("authM").authenticate,
-        async (req, res) => {
-            const authS = container.resolve("authS");
-            const { domainID } = req;
-            const service = req.headers.service;
-            const apiKey = await authS.getAPIKey(domainID, service);
-
-            if (apiKey) {
-                return res.status(200).send({ data: apiKey });
-            }
-            return res.status(400).json({ status: "Fail" });
+    route.post("/profile", async (req, res) => {
+        const authS = container.resolve("authS");
+        const data = req.body;
+        const response = await authS.getUser(data);
+        if (response) {
+            return res.status(200).json({ success: true, data: response });
         }
-    );
+        return res.status(401).send({ message: "Token Not Provided" });
+    });
 };
 
 module.exports = auth;

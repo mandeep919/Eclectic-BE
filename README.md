@@ -8,6 +8,8 @@ Basic Project to Setup Node Api Project ( Individual Service )
 
 # Project Setup Instructions
 
+---
+
 clone the repo<br/>
 `git clone git@github.com:mandeep919/Eclectic-BE.git`<br/><br/>
 copy environment variable<br/>

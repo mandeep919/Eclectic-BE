@@ -1,7 +1,6 @@
 const bodyParser = require("body-parser");
 const routes = require("../api");
 const config = require("../config");
-const { container } = require("./dependencyInjector");
 
 const expressLoader = (app) => {
     app.get("/status", (req, res) => {
@@ -13,11 +12,10 @@ const expressLoader = (app) => {
     });
 
     app.get("/", (req, res) => {
-        res.render('index', { title: config.applicationTitle });
+        res.render("index", { title: config.applicationTitle });
     });
 
     app.use(bodyParser.json());
-    app.use(container.resolve("domainIdentifier").identify);
     app.use("/api", routes());
 };
 
