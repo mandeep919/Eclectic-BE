@@ -1,7 +1,3 @@
-const jwt = require("jsonwebtoken");
-const randomString = require("randomstring");
-const { api, encryptString } = require("../config");
-
 class authS {
     constructor({ organizerR, testR }) {
         this.organizerR = organizerR;
@@ -11,13 +7,13 @@ class authS {
     async signup(data) {
         try {
             const apikey = await this.testR.signup(data);
-            console.log("responsesignup", apikey);
             if (apikey) {
-                return apikey;
+                return true;
             }
             return false;
         } catch (e) {
             console.log("Signup auth Error", e);
+            return false;
         }
     }
 
@@ -47,6 +43,18 @@ class authS {
             return false;
         } catch (e) {
             console.log("Signup auth Error", e);
+        }
+    }
+
+    async getAllUser() {
+        try {
+            const apikey = await this.testR.getAllUser();
+            if (apikey) {
+                return apikey;
+            }
+            return false;
+        } catch (e) {
+            console.log("Get all user failed", e);
         }
     }
 }

@@ -11,7 +11,14 @@ const auth = (app) => {
 
         const response = await authS.signup(data);
         if (response) {
-            return res.status(200).json({ msg: "SignedUp" });
+            return res
+                .status(200)
+                .json({ success: true, message: "User Signed Up" });
+        }
+        if (!response) {
+            return res
+                .status(200)
+                .json({ success: false, message: "User Signup failed" });
         }
     });
 
@@ -20,12 +27,16 @@ const auth = (app) => {
         const data = req.body;
         const response = await authS.login(data);
         if (response) {
-            return res.status(200).json({ success: true, data: response });
+            return res.status(200).json({
+                success: true,
+                data: response,
+                message: "User Logged In"
+            });
         }
-        return res.status(401).send({ message: "Token Not Provided" });
+        return res.status(401).send({ message: "User Login Failed" });
     });
 
-    route.post("/profile", async (req, res) => {
+    route.get("/profile", async (req, res) => {
         const authS = container.resolve("authS");
         const data = req.body;
         const response = await authS.getUser(data);
@@ -33,6 +44,17 @@ const auth = (app) => {
             return res.status(200).json({ success: true, data: response });
         }
         return res.status(401).send({ message: "Token Not Provided" });
+    });
+
+    route.get("/allUsers", async (req, res) => {
+        const authS = container.resolve("authS");
+        const response = await authS.getAllUser();
+        if (response) {
+            return res.status(200).json({ success: true, data: response });
+        }
+        return res
+            .status(401)
+            .json({ success: false, message: "Get Users Failed" });
     });
 };
 

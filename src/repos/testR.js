@@ -46,6 +46,16 @@ class testR {
 
         return testData[0];
     }
+
+    async getAllUser() {
+        let selectAttributes = ["*"];
+
+        let query = this.db.select(selectAttributes).from("users");
+
+        let testData = await query.then();
+
+        return testData;
+    }
 }
 
 module.exports = testR;
