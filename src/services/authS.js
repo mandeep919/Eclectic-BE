@@ -19,7 +19,6 @@ class authS {
 
     async login(data) {
         try {
-            console.log(data, "asdfasdf");
             const apikey = await this.testR.getUser(data);
             if (
                 apikey.userName == data.userName &&
@@ -35,7 +34,6 @@ class authS {
 
     async getUser(data) {
         try {
-            console.log(data, "asdfasdf");
             const apikey = await this.testR.getUser(data);
             if (apikey) {
                 return apikey;
@@ -55,6 +53,42 @@ class authS {
             return false;
         } catch (e) {
             console.log("Get all user failed", e);
+        }
+    }
+
+    async getMessages() {
+        try {
+            const apikey = await this.testR.getMessages();
+            if (apikey) {
+                return apikey;
+            }
+            return false;
+        } catch (e) {
+            console.log("Get messages failed", e);
+        }
+    }
+
+    async getNotif() {
+        try {
+            const apikey = await this.testR.getNotif();
+            if (apikey) {
+                return apikey;
+            }
+            return false;
+        } catch (e) {
+            console.log("Get messages failed", e);
+        }
+    }
+
+    async searchPosts(data) {
+        try {
+            const apikey = await this.testR.searchPosts(data);
+            if (apikey) {
+                return apikey;
+            }
+            return false;
+        } catch (e) {
+            console.log("Get search-posts failed", e);
         }
     }
 }

@@ -56,6 +56,40 @@ const auth = (app) => {
             .status(401)
             .json({ success: false, message: "Get Users Failed" });
     });
+
+    route.get("/messages", async (req, res) => {
+        const authS = container.resolve("authS");
+        const response = await authS.getMessages();
+        if (response) {
+            return res.status(200).json({ success: true, data: response });
+        }
+        return res
+            .status(401)
+            .json({ success: false, message: "Get Messages Failed" });
+    });
+
+    route.get("/notification", async (req, res) => {
+        const authS = container.resolve("authS");
+        const response = await authS.getNotif();
+        if (response) {
+            return res.status(200).json({ success: true, data: response });
+        }
+        return res
+            .status(401)
+            .json({ success: false, message: "Get notifications Failed" });
+    });
+
+    route.get("/searchPosts", async (req, res) => {
+        const authS = container.resolve("authS");
+        const data = req.query.searchText;
+        const response = await authS.searchPosts(data);
+        if (response) {
+            return res.status(200).json({ success: true, data: response });
+        }
+        return res
+            .status(401)
+            .json({ success: false, message: "get search posts Failed" });
+    });
 };
 
 module.exports = auth;

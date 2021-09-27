@@ -56,6 +56,38 @@ class testR {
 
         return testData;
     }
+
+    async getMessages() {
+        let selectAttributes = ["*"];
+
+        let query = this.db.select(selectAttributes).from("message");
+
+        let testData = await query.then();
+
+        return testData;
+    }
+
+    async getNotif() {
+        let selectAttributes = ["*"];
+
+        let query = this.db.select(selectAttributes).from("notifications");
+
+        let testData = await query.then();
+
+        return testData;
+    }
+
+    async searchPosts(data) {
+        let selectAttributes = ["*"];
+
+        let query = this.db
+            .select(selectAttributes)
+            .from("posts")
+            .where("posts.postTitle", "LIKE", `%${data}%`);
+
+        let testData = await query.then();
+        return testData;
+    }
 }
 
 module.exports = testR;
