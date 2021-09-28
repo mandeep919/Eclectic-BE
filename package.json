@@ -15,7 +15,7 @@
         "type": "git",
         "url": "git@github.com:mandeep919/Eclectic-BE.git"
     },
-    "author": "",
+    "author": "MandeepMaharjan",
     "license": "ISC",
     "dependencies": {
         "awilix": "^4.2.6",

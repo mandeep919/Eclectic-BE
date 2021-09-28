@@ -6,7 +6,6 @@ const helmet = require("helmet");
 
 async function startServer() {
     const app = express();
-
     app.use(helmet());
     app.use(cors());
     app.options("*", cors());
@@ -27,5 +26,4 @@ async function startServer() {
         console.log("Example app listening on port " + port);
     });
 }
-
 startServer();
